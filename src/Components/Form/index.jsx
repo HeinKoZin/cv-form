@@ -1,17 +1,17 @@
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, TextField, Button, Avatar } from "@material-ui/core";
 import React, { Component } from "react";
 import MMNRC from "myanmar-nrc-x";
 import { Save } from "@material-ui/icons";
-
+import "./styles.scss";
 export default class Form extends Component {
    state = {
-      date: null,
+      photo: null,
       nrc: null,
       nrcValidity: null,
    };
 
-   test = (file) => {
-      this.setState({ date: URL.createObjectURL(file) });
+   upload = (file) => {
+      this.setState({ photo: URL.createObjectURL(file) });
    };
 
    checkNrc = (nrc) => {
@@ -48,7 +48,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="father-name"
                   label="Father's Name"
                   fullWidth
                   type="text"
@@ -69,7 +69,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="nrc"
                   label={
                      this.state.nrcValidity == null
                         ? "N.R.C No."
@@ -86,7 +86,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="nationality"
                   label="Nationality"
                   fullWidth
                   variant="outlined"
@@ -98,7 +98,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="height"
                   label="Height"
                   fullWidth
                   variant="outlined"
@@ -106,7 +106,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="weight"
                   label="Weight"
                   fullWidth
                   variant="outlined"
@@ -114,7 +114,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="marital-status"
                   label="Marital Status"
                   fullWidth
                   variant="outlined"
@@ -122,7 +122,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="education"
                   label="Education Qualification"
                   fullWidth
                   variant="outlined"
@@ -130,7 +130,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="other-education"
                   label="Other Qualification"
                   fullWidth
                   variant="outlined"
@@ -141,7 +141,7 @@ export default class Form extends Component {
 
             <Grid item xs={12} sm={12} md={12}>
                <TextField
-                  id="name"
+                  id="working-experience"
                   type="text"
                   multiline={true}
                   label="Working Experience"
@@ -153,7 +153,7 @@ export default class Form extends Component {
 
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="contact-address"
                   label="Contact Address"
                   fullWidth
                   variant="outlined"
@@ -161,7 +161,7 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="contact-phone"
                   label="Contact Phone"
                   fullWidth
                   variant="outlined"
@@ -169,17 +169,33 @@ export default class Form extends Component {
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
-                  id="name"
+                  id="photo"
                   label="Photo"
                   type="file"
+                  inputProps={{ accept: "image/*" }}
                   fullWidth
-                  onChange={(e) => this.test(e.target.files[0])}
+                  onChange={(e) => this.upload(e.target.files[0])}
                   variant="outlined"
                   InputLabelProps={{
                      shrink: true,
                   }}
                />
             </Grid>
+
+            {/* Previewing Photo */}
+            <Grid container item xs={12}>
+               <Grid item xs={0} sm={0} md={4} />
+               <Grid item xs={12} sm={12} md={4}>
+                  <Avatar
+                     src={this.state.photo}
+                     variant="rounded"
+                     className="cv-photo">
+                     Your Photo
+                  </Avatar>
+               </Grid>
+               <Grid item xs={0} sm={0} md={4} />
+            </Grid>
+
             {/* //  For Build Button Layout */}
             <Grid container item xs={12}>
                <Grid item xs={0} sm={0} md={4} />
