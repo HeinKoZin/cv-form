@@ -16,7 +16,7 @@ function Header() {
          <AppBar position="static" color="primary">
             <Toolbar>
                <Typography variant="h6" className={classes.header_title}>
-                  CV Form Generator
+                  PY780N CV
                </Typography>
             </Toolbar>
          </AppBar>
