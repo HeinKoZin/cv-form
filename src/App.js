@@ -14,6 +14,7 @@ export default class App extends Component {
                <Grid item>
                   <Main />
                </Grid>
+               <Grid item xs={12}></Grid>
                <Grid item>
                   <Footer />
                </Grid>
