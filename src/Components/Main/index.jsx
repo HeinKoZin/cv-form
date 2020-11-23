@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Form from "../Form";
 import { makeStyles } from "@material-ui/core";
+import { Description } from "@material-ui/icons";
 
 const styles = makeStyles({
    main_title: {
@@ -28,7 +29,7 @@ export default function Main() {
                gutterBottom={true}
                paragraph={true}
                className={classes.main_title}>
-               CV Form Generator
+               <Description fontSize="large" /> Pro CV Form Generator
             </Typography>
          </Grid>
          <Form />

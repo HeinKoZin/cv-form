@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core";
+import { Description } from "@material-ui/icons";
 
 const styles = makeStyles({
    header_title: {
@@ -16,7 +17,7 @@ function Header() {
          <AppBar position="static" color="primary">
             <Toolbar>
                <Typography variant="h6" className={classes.header_title}>
-                  PY780N CV
+                  <Description /> PY780N CV
                </Typography>
             </Toolbar>
          </AppBar>
