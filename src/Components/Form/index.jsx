@@ -4,7 +4,7 @@ import MMNRC from "myanmar-nrc-x";
 import { Save } from "@material-ui/icons";
 import "./styles.scss";
 import PDFForm from "../CVForm";
-
+import myanmarNumber from "myanmar-numbers";
 export default class Form extends Component {
    state = {
       nrc: null,
@@ -52,6 +52,7 @@ export default class Form extends Component {
    working_experience = React.createRef();
    contact_phone = React.createRef();
    apply_post = React.createRef();
+   email = React.createRef();
 
    build = (e) => {
       const name = this.name.current.value;
@@ -61,37 +62,47 @@ export default class Form extends Component {
       const nationality = this.nationality.current.value;
       const sex = this.sex.current.value;
       const height = this.height.current.value;
-      const weight = this.marital_status.current.value;
+      const weight = this.weight.current.value;
+      const marital_status = this.marital_status.current.value;
       const education = this.education.current.value;
       const other_education = this.other_education.current.value;
       const contact_address = this.contact_address.current.value;
       const working_experience = this.working_experience.current.value;
       const contact_phone = this.contact_phone.current.value;
-      const appy_post = this.apply_post.current.value;
+      const apply_post = this.apply_post.current.value;
+      const email = this.email.current.value;
 
       if (name && father_name && birthday && nrc && nationality && sex !== "") {
+         console.log(email);
          this.setState({
             build: true,
             data: {
                ...this.state.data,
                name: name,
                father_name: father_name,
-               birthday: birthday,
+               birthday:
+                  this.props.checked === true
+                     ? myanmarNumber(birthday, "my")
+                     : birthday,
                nrc: nrc,
                nationality: nationality,
                sex: sex,
                height: height,
                weight: weight,
+               marital_status: marital_status,
                education: education,
                other_education: other_education,
                contact_address: contact_address,
                working_experience: working_experience,
                contact_phone: contact_phone,
-               apply_post: appy_post,
+               apply_post: apply_post,
+               email: email,
             },
          });
       } else {
-         alert(" You need to enter your personal's infomation.");
+         this.props.checked === true
+            ? alert("")
+            : alert(" You need to enter your personal's information.");
       }
    };
 
@@ -101,27 +112,35 @@ export default class Form extends Component {
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="name"
-                  label="Name"
+                  label={this.props.checked === true ? "အမည်" : "Name"}
                   fullWidth
                   variant="outlined"
                   type="text"
                   inputRef={this.name}
+                  required
                />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="father-name"
-                  label="Father's Name"
+                  label={
+                     this.props.checked === true ? "အဖ အမည်" : "Father's Name"
+                  }
                   fullWidth
                   type="text"
                   inputRef={this.father_name}
                   variant="outlined"
+                  required
                />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="birth"
-                  label="Date of Birth"
+                  label={
+                     this.props.checked === true
+                        ? "မွေးသက္ကရာဇ်"
+                        : "Date of Birth"
+                  }
                   type="date"
                   inputRef={this.birthday}
                   variant="outlined"
@@ -129,6 +148,7 @@ export default class Form extends Component {
                      shrink: true,
                   }}
                   fullWidth
+                  required
                />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
@@ -136,7 +156,13 @@ export default class Form extends Component {
                   id="nrc"
                   inputRef={this.nrc}
                   label={
-                     this.state.nrcValidity == null
+                     this.props.checked === true
+                        ? this.state.nrcValidity == null
+                           ? "မှတ်ပုံတင်အမှတ်"
+                           : this.state.nrcValidity === true
+                           ? "မှတ်ပုံတင်အမှတ် မှန်ကန်ပါတယ်။"
+                           : "မှတ်ပုံတင်အမှတ် မှားနေပါတယ်။"
+                        : this.state.nrcValidity == null
                         ? "N.R.C No."
                         : this.state.nrcValidity === true
                         ? "N.R.C No is valid."
@@ -146,33 +172,42 @@ export default class Form extends Component {
                   fullWidth
                   onBlur={(e) => this.checkNrc(e.target.value)}
                   variant="outlined"
-                  helperText="You need to enter a valid NRC."
+                  required
+                  helperText={
+                     this.props.checked === true
+                        ? "မှန်ကန်သော မှတ်ပုံတင်ထည့်ရန်လိုအပ်ပါသည်။"
+                        : "You need to enter a valid NRC."
+                  }
                />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="nationality"
                   inputRef={this.nationality}
-                  label="Nationality"
+                  label={
+                     this.props.checked === true ? "လူမျိုး" : "Nationality"
+                  }
                   fullWidth
                   variant="outlined"
+                  required
                />
             </Grid>
 
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="sex"
-                  label="Sex"
+                  label={this.props.checked === true ? "ကျား/မ" : "Sex"}
                   inputRef={this.sex}
                   fullWidth
                   variant="outlined"
+                  required
                />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="height"
                   inputRef={this.height}
-                  label="Height"
+                  label={this.props.checked === true ? "အရပ်အမြင့်" : "Height"}
                   fullWidth
                   variant="outlined"
                />
@@ -181,7 +216,9 @@ export default class Form extends Component {
                <TextField
                   id="weight"
                   inputRef={this.weight}
-                  label="Weight"
+                  label={
+                     this.props.checked === true ? "ကိုယ်အလေးချိန်" : "Weight"
+                  }
                   fullWidth
                   variant="outlined"
                />
@@ -189,7 +226,11 @@ export default class Form extends Component {
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="marital_status"
-                  label="Marital Status"
+                  label={
+                     this.props.checked === true
+                        ? "အိမ်ထောင်ရှိ/မရှိ"
+                        : "Marital Status"
+                  }
                   fullWidth
                   variant="outlined"
                   inputRef={this.marital_status}
@@ -199,7 +240,11 @@ export default class Form extends Component {
                <TextField
                   id="education"
                   inputRef={this.education}
-                  label="Education Qualification"
+                  label={
+                     this.props.checked === true
+                        ? "ပညာအရည်အချင်း"
+                        : "Education Qualification"
+                  }
                   fullWidth
                   variant="outlined"
                />
@@ -208,7 +253,11 @@ export default class Form extends Component {
                <TextField
                   id="other_education"
                   inputRef={this.other_education}
-                  label="Other Qualification"
+                  label={
+                     this.props.checked === true
+                        ? "အခြားပညာအရည်အချင်း"
+                        : "Other Qualification"
+                  }
                   fullWidth
                   variant="outlined"
                />
@@ -218,21 +267,43 @@ export default class Form extends Component {
                <TextField
                   id="contact_address"
                   inputRef={this.contact_address}
-                  label="Contact Address"
+                  label={
+                     this.props.checked === true
+                        ? "နေရပ်လိပ်စာ"
+                        : "Contact Address"
+                  }
                   fullWidth
                   variant="outlined"
                />
             </Grid>
 
+            <Grid item xs={12} sm={12} md={4}>
+               <TextField
+                  id="email"
+                  inputRef={this.email}
+                  type="mail"
+                  label={
+                     this.props.checked === true
+                        ? "အီးမေးလ်လိပ်စာ"
+                        : "Email Address"
+                  }
+                  fullWidth
+                  variant="outlined"
+               />
+            </Grid>
             {/* For Working Experience */}
 
-            <Grid item xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={8}>
                <TextField
                   id="working_experience"
                   type="text"
                   inputRef={this.working_experience}
                   multiline={true}
-                  label="Working Experience"
+                  label={
+                     this.props.checked === true
+                        ? "လုပ်ငန်းအတွေ့အကြုံ"
+                        : "Working Experience"
+                  }
                   fullWidth
                   variant="outlined"
                   rows={5}
@@ -243,9 +314,14 @@ export default class Form extends Component {
                <TextField
                   id="contact_phone"
                   inputRef={this.contact_phone}
-                  label="Contact Phone"
+                  label={
+                     this.props.checked === true
+                        ? "ဆယ်သွယ်ရမည့်ဖုန်း"
+                        : "Contact Phone"
+                  }
                   fullWidth
                   variant="outlined"
+                  required
                />
             </Grid>
 
@@ -253,7 +329,11 @@ export default class Form extends Component {
                <TextField
                   id="apply_post"
                   inputRef={this.apply_post}
-                  label="Apply Post"
+                  label={
+                     this.props.checked === true
+                        ? "လျှောက်ထားလိုသည့်နေရာ"
+                        : "Apply Post"
+                  }
                   fullWidth
                   variant="outlined"
                />
@@ -262,9 +342,9 @@ export default class Form extends Component {
             <Grid item xs={12} sm={12} md={4}>
                <TextField
                   id="photo"
-                  label="Photo"
+                  label={this.props.checked === true ? "ဓာတ်ပုံ" : "Photo"}
                   type="file"
-                  inputProps={{ accept: "image/*" }}
+                  inputProps={{ accept: "image/jpg, image/jpeg, image/png" }}
                   fullWidth
                   onChange={(e) =>
                      e.target.files[0] === undefined
@@ -279,18 +359,22 @@ export default class Form extends Component {
             </Grid>
 
             {/* Previewing Photo */}
-            <Grid container item xs={12}>
-               <Grid item xs={0} sm={0} md={4} />
-               <Grid item xs={12} sm={12} md={4}>
-                  <Avatar
-                     src={this.state.data.photo}
-                     variant="rounded"
-                     className="cv-photo">
-                     Your Photo
-                  </Avatar>
+            {this.state.data.photo === null ? (
+               ""
+            ) : (
+               <Grid container item xs={12}>
+                  <Grid item xs={0} sm={0} md={4} />
+                  <Grid item xs={12} sm={12} md={4}>
+                     <Avatar
+                        src={this.state.data.photo}
+                        variant="rounded"
+                        className="cv-photo">
+                        Your Photo
+                     </Avatar>
+                  </Grid>
+                  <Grid item xs={0} sm={0} md={4} />
                </Grid>
-               <Grid item xs={0} sm={0} md={4} />
-            </Grid>
+            )}
 
             {/* //  For Build Button Layout */}
             <Grid container item xs={12}>
@@ -303,14 +387,14 @@ export default class Form extends Component {
                      startIcon={<Save />}
                      style={{ marginTop: 20 }}
                      onClick={this.build}>
-                     Build CV Form
+                     Build CV
                   </Button>
                </Grid>
                <Grid item xs={0} sm={0} md={4} />
             </Grid>
 
             {this.state.build !== false ? (
-               <PDFForm data={this.state.data} />
+               <PDFForm data={this.state.data} checked={this.props.checked} />
             ) : (
                ""
             )}

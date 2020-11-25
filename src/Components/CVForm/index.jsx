@@ -9,28 +9,40 @@ import {
    PDFDownloadLink,
    PDFViewer,
    Image,
+   Font,
 } from "@react-pdf/renderer";
 import { Grid, Button } from "@material-ui/core";
-
+import photo from "../../images/thumb.png";
+import font from "../../fonts/Myanmar3_2018.ttf";
 // Create styles
+
+Font.register({
+   family: "Myanmar3",
+   src: font,
+   fontStyle: "normal",
+   fontWeight: 700,
+});
+
 const styles = StyleSheet.create({
    page: {
       flexDirection: "row",
       backgroundColor: "#ffffff",
+      fontFamily: "Myanmar3",
    },
    section: {
       margin: 10,
       marginTop: 10,
       padding: 20,
-      paddingTop: 120,
+      paddingTop: 65,
       flexGrow: 1,
    },
    title: {
+      width: "100%",
       textAlign: "center",
       fontSize: "25pt",
       position: "absolute",
       top: 15,
-      marginLeft: 5,
+      marginLeft: 25,
       textDecoration: "underline",
    },
    view: {
@@ -43,13 +55,26 @@ const styles = StyleSheet.create({
       width: 75,
       height: 75,
       position: "absolute",
-      top: 10,
-      right: 10,
+      top: 30,
+      right: 20,
+      objectFit: "cover",
    },
    data: {
       width: 340,
+      // fontFamily: "Padauk",
+      "&::before": {
+         content: `:`,
+      },
+   },
+   footer: {
+      position: "absolute",
+      textAlign: "center",
+      bottom: 6,
+      fontSize: "9pt",
+      marginLeft: 30,
    },
 });
+
 // Create Document Component
 const MyDocument = (props) => (
    <Document author="Hein Ko Zin">
@@ -57,55 +82,104 @@ const MyDocument = (props) => (
          <View style={styles.section}>
             <Text style={styles.title}>CURRICULUM VITAE</Text>
             <Image
-               src={props.data.photo === null ? "" : props.data.photo}
+               src={props.data.photo === null ? photo : props.data.photo}
                style={styles.photo}
             />
             <View style={styles.view}>
-               <Text>Name</Text>
+               <Text>{props.checked === true ? "အမည်" : "Name"}</Text>
                <Text style={styles.data}>: {props.data.name}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Father's Name</Text>
+               <Text>
+                  {props.checked === true ? "အဖ အမည်" : "Father's Name"}
+               </Text>
                <Text style={styles.data}>: {props.data.father_name}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Birthday</Text>
+               <Text>
+                  {props.checked === true ? "မွေးသက္ကရာဇ်" : "Birthday"}
+               </Text>
                <Text style={styles.data}>: {props.data.birthday}</Text>
             </View>
             <View style={styles.view}>
-               <Text>N.R.C No.</Text>
-               <Text style={styles.data}>: {props.data.nrc}</Text>
+               <Text>
+                  {props.checked === true ? "မှတ်ပုံတင်အမှတ်" : "NRC No."}
+               </Text>
+               <Text style={styles.data}>
+                  :{" "}
+                  {props.data.nrc === ""
+                     ? props.checked === true
+                        ? "လျှောက်ထားစဲ"
+                        : "Pending..."
+                     : props.data.nrc}
+               </Text>
             </View>
             <View style={styles.view}>
-               <Text>Nationality</Text>
+               <Text>{props.checked === true ? "လူမျိုး" : "Nationality"}</Text>
                <Text style={styles.data}>: {props.data.nationality}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Sex</Text>
+               <Text>{props.checked === true ? "ကျား/မ" : "Sex"}</Text>
                <Text style={styles.data}>: {props.data.sex}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Height</Text>
+               <Text>{props.checked === true ? "အရပ်အမြင့်" : "Height"}</Text>
                <Text style={styles.data}>: {props.data.height}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Weight</Text>
+               <Text>
+                  {props.checked === true ? "ကိုယ်အလေးချိန်" : "Weight"}
+               </Text>
                <Text style={styles.data}>: {props.data.weight}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Education Qualification</Text>
+               <Text>
+                  {props.checked === true
+                     ? "အိမ်ထောင်ရှိ/မရှိ"
+                     : "Marital Status"}
+               </Text>
+               <Text style={styles.data}>: {props.data.marital_status}</Text>
+            </View>
+            <View style={styles.view}>
+               <Text>
+                  {props.checked === true
+                     ? "ပညာအရည်အချင်း"
+                     : "Education Qualification"}
+               </Text>
                <Text style={styles.data}>: {props.data.education}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Other Qualification</Text>
+               <Text>
+                  {props.checked === true
+                     ? "အခြားပညာအရည်အချင်း"
+                     : "Other Qualification"}
+               </Text>
                <Text style={styles.data}>: {props.data.other_education}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Contact Address</Text>
+               <Text>
+                  {props.checked === true ? "နေရပ်လိပ်စာ" : "Contact Address"}
+               </Text>
                <Text style={styles.data}>: {props.data.contact_address}</Text>
             </View>
+            {props.data.email === "" ? (
+               <View />
+            ) : (
+               <View style={styles.view}>
+                  <Text>
+                     {props.checked === true
+                        ? "အီးမေးလ်လိပ်စာ"
+                        : "Email Address"}
+                  </Text>
+                  <Text style={styles.data}>: {props.data.email}</Text>
+               </View>
+            )}
             <View style={styles.view}>
-               <Text>Working Experience</Text>
+               <Text>
+                  {props.checked === true
+                     ? "လုပ်ငန်းအတွေ့အကြုံ"
+                     : "Working Experience"}
+               </Text>
                <Text style={styles.data}>
                   :{" "}
                   {props.data.working_experience === ""
@@ -114,11 +188,19 @@ const MyDocument = (props) => (
                </Text>
             </View>
             <View style={styles.view}>
-               <Text>Contact Phone</Text>
+               <Text>
+                  {props.checked === true
+                     ? "ဆယ်သွယ်ရမည့်ဖုန်း"
+                     : "Contact Phone"}
+               </Text>
                <Text style={styles.data}>: {props.data.contact_phone}</Text>
             </View>
             <View style={styles.view}>
-               <Text>Apply Post</Text>
+               <Text>
+                  {props.checked === true
+                     ? "လျှောက်ထားလိုသည့်နေရာ"
+                     : "Apply Post"}
+               </Text>
                <Text style={styles.data}>
                   :{" "}
                   {props.data.apply_post === ""
@@ -136,17 +218,9 @@ const MyDocument = (props) => (
                   bottom: 50,
                   fontSize: "13pt",
                }}>
-               (Signature)
+               {props.checked === true ? "(လက်မှတ်)" : "(Signature)"}
             </Text>
-            <Text
-               style={{
-                  position: "absolute",
-                  textAlign: "center",
-                  bottom: 6,
-                  fontSize: "9pt",
-               }}>
-               Generated with PY780N CV
-            </Text>
+            <Text style={styles.footer}>Generated with PY780N CV</Text>
          </View>
       </Page>
    </Document>
@@ -156,7 +230,7 @@ const PDFForm = (props) => (
    <Grid item container>
       <PDFDownloadLink
          document={<MyDocument data={props.data} />}
-         fileName="CV Form (Created by cv-form-generator.web.app).pdf">
+         fileName="CV Form (Created With cv-form-generator.web.app).pdf">
          {({ blob, url, loading, error }) =>
             loading ? (
                "Loading document..."
@@ -178,7 +252,7 @@ const PDFForm = (props) => (
          width="100%"
          height="600px
       ">
-         <MyDocument data={props.data} />
+         <MyDocument data={props.data} checked={props.checked} />
       </PDFViewer>
    </Grid>
 );

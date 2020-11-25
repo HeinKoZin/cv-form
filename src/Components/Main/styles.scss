@@ -1,0 +1,21 @@
+$screens-min: (
+   mobile: 600px,
+   small-device: 50px,
+   tablet: 960px,
+   laptop: 1280px,
+   desktop: 1920px,
+);
+$screens-max: (
+   mobile: 959px,
+   small-device: 598px,
+   tablet: 1279px,
+   laptop: 1919px,
+   desktop: 5000px,
+);
+@mixin screen($sizes) {
+   @each $size in $sizes {
+      @media only screen and (max-width: #{map-get($map: $screens-max, $key: $size)}) and (min-width: #{map-get($map: $screens-min, $key: $size)}) {
+         @content;
+      }
+   }
+}

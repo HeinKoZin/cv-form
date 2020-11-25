@@ -5,15 +5,27 @@ import Form from "../Form";
 import { makeStyles } from "@material-ui/core";
 import { Description } from "@material-ui/icons";
 
-const styles = makeStyles({
+const styles = makeStyles((theme) => ({
    main_title: {
       marginTop: 40,
-      marginBottom: 50,
+      textAlign: "center",
+      marginBottom: 30,
       fontFamily: "Ubuntu",
+      [theme.breakpoints.down("md")]: {
+         fontSize: "1.5em",
+      },
    },
-});
+   inform: {
+      marginBottom: 30,
+      fontSize: 18,
+      textAlign: "center",
+      [theme.breakpoints.down("md")]: {
+         fontSize: 14,
+      },
+   },
+}));
 
-export default function Main() {
+export default function Main(props) {
    const classes = styles();
    return (
       <Grid
@@ -21,18 +33,25 @@ export default function Main() {
          alignContent="center"
          alignItems="center"
          direction="column">
-         <Grid item>
+         <Grid item sm={10} xs={11}>
             {" "}
-            <Typography
-               variant="h4"
-               color="initial"
-               gutterBottom={true}
-               paragraph={true}
+            <Grid
+               container
+               direction="row"
+               alignItems="center"
                className={classes.main_title}>
-               <Description fontSize="large" /> Pro CV Form Generator
+               <Description />
+               <Typography variant="h4" color="initial">
+                  CV Form Generator
+               </Typography>
+            </Grid>
+            <Typography variant="h6" color="initial" className={classes.inform}>
+               {props.checked === true
+                  ? "ကျေးဇူးပြု၍ အချက်အလက်များကို မြန်မာလိုဖြည့်ပါ။"
+                  : "Please enter your information in English."}
             </Typography>
          </Grid>
-         <Form />
+         <Form checked={props.checked} />
       </Grid>
    );
 }
