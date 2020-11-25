@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
+
 export default class App extends Component {
    state = {
       checked: false,
@@ -10,6 +11,7 @@ export default class App extends Component {
    changeLanguage = (checked) => {
       this.setState({ checked: checked });
    };
+
    render() {
       return (
          <div>

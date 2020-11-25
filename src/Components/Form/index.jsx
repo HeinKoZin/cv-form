@@ -5,6 +5,13 @@ import { Save } from "@material-ui/icons";
 import "./styles.scss";
 import PDFForm from "../CVForm";
 import myanmarNumber from "myanmar-numbers";
+import kyani from "knayi-myscript";
+
+kyani.setGlobalOptions({
+   detector: {
+      use_myanmartools: true,
+   },
+});
 export default class Form extends Component {
    state = {
       nrc: null,
@@ -72,8 +79,7 @@ export default class Form extends Component {
       const apply_post = this.apply_post.current.value;
       const email = this.email.current.value;
 
-      if (name && father_name && birthday && nrc && nationality && sex !== "") {
-         console.log(email);
+      if (name && father_name && birthday && nationality && sex !== "") {
          this.setState({
             build: true,
             data: {

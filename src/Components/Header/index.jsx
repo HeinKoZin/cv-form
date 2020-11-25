@@ -35,7 +35,7 @@ function Header(props) {
                               props.changeLanguage(e.target.checked)
                            }
                            checked={props.checked}
-                           disabled
+                           // disabled
                         />
                      </Grid>
                      <Grid item>MM</Grid>
