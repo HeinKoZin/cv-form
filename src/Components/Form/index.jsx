@@ -112,6 +112,10 @@ export default class Form extends Component {
       }
    };
 
+   // componentDidMount() {
+   //    this.getFont("မြန်မာစာ", "normal 11px 'Roboto Regular'");
+   // }
+
    render() {
       return (
          <Grid item container spacing={3} sm={10} xs={10} md={7} lg={7}>
@@ -166,7 +170,7 @@ export default class Form extends Component {
                         ? this.state.nrcValidity == null
                            ? "မှတ်ပုံတင်အမှတ်"
                            : this.state.nrcValidity === true
-                           ? "မှတ်ပုံတင်အမှတ် မှန်ကန်ပါတယ်။"
+                           ? "မှတ်ပုံတင်အမှတ် မှန်ကန်ပါတယ် "
                            : "မှတ်ပုံတင်အမှတ် မှားနေပါတယ်။"
                         : this.state.nrcValidity == null
                         ? "N.R.C No."

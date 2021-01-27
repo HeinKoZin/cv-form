@@ -4,6 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, Switch, Grid } from "@material-ui/core";
 import { Description } from "@material-ui/icons";
+import FlagIcon from "../../Components/FlagIcon";
 
 const styles = makeStyles({
    header_title: {
@@ -27,8 +28,14 @@ function Header(props) {
                </Typography>
 
                <div>
-                  <Grid container component="label" alignItems="center">
-                     <Grid item>ENG</Grid>
+                  <Grid
+                     container
+                     component="label"
+                     alignItems="center"
+                     spacing={1}>
+                     <Grid item>
+                        <FlagIcon code="us" Component="span" />
+                     </Grid>
                      <Grid item>
                         <Switch
                            onChange={(e) =>
@@ -38,7 +45,9 @@ function Header(props) {
                            // disabled
                         />
                      </Grid>
-                     <Grid item>MM</Grid>
+                     <Grid item>
+                        <FlagIcon code="mm" />
+                     </Grid>
                   </Grid>
                </div>
             </Toolbar>

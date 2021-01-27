@@ -97,58 +97,52 @@ const MyDocument = (props) => (
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("အမည်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("အမည်", "zawgyi")
                      : "Name"}
                </Text>
                <Text style={styles.data}>
-                  : {kyani.fontConvert(props.data.name, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.name, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("အဖ အမည်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("အဖ အမည်", "zawgyi")
                      : "Father's Name"}
                </Text>
                <Text style={styles.data}>
-                  :{" "}
-                  {kyani.fontConvert(
-                     props.data.father_name,
-                     "zawgyi",
-                     "unicode"
-                  )}
+                  : {kyani.fontConvert(props.data.father_name, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("မွေးသက္ကရာဇ်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("မွေးသက္ကရာဇ်", "zawgyi")
                      : "Birthday"}
                </Text>
                <Text style={styles.data}>
-                  :{" "}
-                  {kyani.fontConvert(props.data.birthday, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.birthday, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("မှတ်ပုံတင်အမှတ်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("မှတ်ပုံတင်အမှတ်", "zawgyi")
                      : "NRC No."}
                </Text>
                <Text style={styles.data}>
                   :{" "}
                   {props.data.nrc === ""
                      ? props.checked === true
-                        ? kyani.fontConvert("လျှောက်ထားစဲ", "zawgyi", "unicode")
+                        ? kyani.fontConvert("လျှောက်ထားစဲ", "zawgyi")
                         : "Pending..."
-                     : kyani.fontConvert(props.data.nrc, "zawgyi", "unicode")}
+                     : kyani.fontConvert(props.data.nrc, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("လူမျိုး", "zawgyi", "unicode")
+                     ? kyani.fontConvert("လူမျိုး", "zawgyi")
                      : "Nationality"}
                </Text>
                <Text style={styles.data}>
@@ -163,41 +157,37 @@ const MyDocument = (props) => (
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("ကျား/မ", "zawgyi", "unicode")
+                     ? kyani.fontConvert("ကျား/မ", "zawgyi")
                      : "Sex"}
                </Text>
                <Text style={styles.data}>
-                  : {kyani.fontConvert(props.data.sex, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.sex, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("အရပ်အမြင့်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("အရပ်အမြင့်", "zawgyi")
                      : "Height"}
                </Text>
                <Text style={styles.data}>
-                  : {kyani.fontConvert(props.data.height, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.height, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("ကိုယ်အလေးချိန်", "zawgyi", "unicode")
+                     ? kyani.fontConvert("ကိုယ်အလေးချိန်", "zawgyi")
                      : "Weight"}
                </Text>
                <Text style={styles.data}>
-                  : {kyani.fontConvert(props.data.weight, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.weight, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert(
-                          "အိမ်ထောင်ရှိ/မရှိ",
-                          "zawgyi",
-                          "unicode"
-                       )
+                     ? kyani.fontConvert("အိမ်ထောင်ရှိ/မရှိ", "zawgyi")
                      : "Marital Status"}
                </Text>
                <Text style={styles.data}>
@@ -212,12 +202,11 @@ const MyDocument = (props) => (
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("ပညာအရည်အချင်း", "zawgyi", "unicode")
+                     ? kyani.fontConvert("ပညာအရည်အချင်း", "zawgyi")
                      : "Education Qualification"}
                </Text>
                <Text style={styles.data}>
-                  :{" "}
-                  {kyani.fontConvert(props.data.education, "zawgyi", "unicode")}
+                  : {kyani.fontConvert(props.data.education, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
@@ -242,16 +231,11 @@ const MyDocument = (props) => (
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert("နေရပ်လိပ်စာ", "zawgyi", "unicode")
+                     ? kyani.fontConvert("နေရပ်လိပ်စာ", "zawgyi")
                      : "Contact Address"}
                </Text>
                <Text style={styles.data}>
-                  :{" "}
-                  {kyani.fontConvert(
-                     props.data.contact_address,
-                     "zawgyi",
-                     "unicode"
-                  )}
+                  : {kyani.fontConvert(props.data.contact_address, "zawgyi")}
                </Text>
             </View>
             {props.data.email === "" ? (
@@ -260,27 +244,18 @@ const MyDocument = (props) => (
                <View style={styles.view}>
                   <Text>
                      {props.checked === true
-                        ? kyani.fontConvert(
-                             "အီးမေးလ်လိပ်စာ",
-                             "zawgyi",
-                             "unicode"
-                          )
+                        ? kyani.fontConvert("အီးမေးလ်လိပ်စာ", "zawgyi")
                         : "Email Address"}
                   </Text>
                   <Text style={styles.data}>
-                     :{" "}
-                     {kyani.fontConvert(props.data.email, "zawgyi", "unicode")}
+                     : {kyani.fontConvert(props.data.email, "zawgyi")}
                   </Text>
                </View>
             )}
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert(
-                          "လုပ်ငန်းအတွေ့အကြုံ",
-                          "zawgyi",
-                          "unicode"
-                       )
+                     ? kyani.fontConvert("လုပ်ငန်းအတွေ့အကြုံ", "zawgyi")
                      : "Working Experience"}
                </Text>
                <Text style={styles.data}>
@@ -289,55 +264,36 @@ const MyDocument = (props) => (
                      ? props.checked === true
                         ? kyani.fontConvert(
                              "လုပ်ငန်းအတွေ့အကြုံ မရှိသေးပါ။",
-                             "zawgyi",
-                             "unicode"
+                             "zawgyi"
                           )
                         : "No working experience."
                      : kyani.fontConvert(
                           props.data.working_experience,
-                          "zawgyi",
-                          "unicode"
+                          "zawgyi"
                        )}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert(
-                          "ဆယ်သွယ်ရမည့်ဖုန်း",
-                          "zawgyi",
-                          "unicode"
-                       )
+                     ? kyani.fontConvert("ဆယ်သွယ်ရမည့်ဖုန်း", "zawgyi")
                      : "Contact Phone"}
                </Text>
                <Text style={styles.data}>
-                  :{" "}
-                  {kyani.fontConvert(
-                     props.data.contact_phone,
-                     "zawgyi",
-                     "unicode"
-                  )}
+                  : {kyani.fontConvert(props.data.contact_phone, "zawgyi")}
                </Text>
             </View>
             <View style={styles.view}>
                <Text>
                   {props.checked === true
-                     ? kyani.fontConvert(
-                          "လျှောက်ထားလိုသည့်နေရာ",
-                          "zawgyi",
-                          "unicode"
-                       )
+                     ? kyani.fontConvert("လျှောက်ထားလိုသည့်နေရာ", "zawgyi")
                      : "Apply Post"}
                </Text>
                <Text style={styles.data}>
                   :{" "}
                   {props.data.apply_post === ""
                      ? "..................................................................."
-                     : kyani.fontConvert(
-                          props.data.apply_post,
-                          "zawgyi",
-                          "unicode"
-                       )}
+                     : kyani.fontConvert(props.data.apply_post, "zawgyi")}
                </Text>
             </View>
             <Text style={{ position: "absolute", right: 10, bottom: 70 }}>
@@ -364,10 +320,14 @@ const PDFForm = (props) => (
    <Grid item container>
       <PDFDownloadLink
          document={<MyDocument data={props.data} checked={props.checked} />}
-         fileName="CV Form (Created With cv-form-generator.web.app).pdf">
+         fileName="CV Form (Generated With cv-form-generator.web.app).pdf">
          {({ blob, url, loading, error }) =>
             loading ? (
-               "Loading document..."
+               props.checked === true ? (
+                  kyani.fontConvert("လုပ်ဆောင်နေပါသည်...", "unicode")
+               ) : (
+                  "Loading document..."
+               )
             ) : (
                <Button
                   style={{

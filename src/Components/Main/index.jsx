@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Form from "../Form";
 import { makeStyles } from "@material-ui/core";
 import { Description } from "@material-ui/icons";
+import knayi from "knayi-myscript";
 
 const styles = makeStyles((theme) => ({
    main_title: {
@@ -27,6 +28,7 @@ const styles = makeStyles((theme) => ({
 
 export default function Main(props) {
    const classes = styles();
+
    return (
       <Grid
          container
