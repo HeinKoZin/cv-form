@@ -64,6 +64,7 @@ export default class Form extends Component {
 	apply_post = React.createRef();
 	email = React.createRef();
 
+	// TODO: Build an CV Form.
 	build = (e) => {
 		const name = this.name.current.value;
 		const father_name = this.father_name.current.value;
@@ -82,6 +83,7 @@ export default class Form extends Component {
 		const apply_post = this.apply_post.current.value;
 		const email = this.email.current.value;
 
+		// TODO: Check for valid data.
 		if (name && father_name && birthday && nationality && sex !== "") {
 			this.setState({
 				build: true,
