@@ -1,11 +1,12 @@
-# Stage 1 
-FROM node:14-alpine as build-step
-RUN mkdir /app 
-WORKDIR /app
-COPY package.json /app
-RUN npm install --slient
-COPY . /app 
-RUN npm run build
-# Stage 2
-FROM nginx:1.21.1-alpine
-COPY --from=build-step /app/build /usr/share/nginx/html
+FROM node:14-alpine AS builder 
+WORKDIR /app 
+COPY package.json ./  
+RUN yarn install --frozen-lockfile 
+COPY . . 
+RUN yarn build 
+RUN echo $PORT
+FROM nginx:1.19-alpine AS server
+COPY --from=builder ./app/build/ /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+
